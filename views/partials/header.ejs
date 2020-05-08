@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <title>Cinemy</title>
+  <link rel="icon" type="image/x-icon" sizes="900x900" href="/images/logo4.png"/>
+
+
+  <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+       
+  
+
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+
+  
+</head>
+
+<body>
+    
+  <!--Navbar begin-->
+  <div id="navbar">
+    <nav>
+      <div class="nav-wrapper" style="background-color: #a00808;">
+        <a href="#!" class="brand-logo" style="background-color:rgba(0,0,0,0); height: 56px;"><img height="47px" width="76px" src="/images/logo3.png"/></a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i style="color: #f9ca24;" class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+          <li><a id="nav-menu" class="active" href="/latest" style="font-size: 27px;"><i class="fa fa-film" aria-hidden="true"></i> Latest</a></li>
+          <li><a id="nav-menu" href="/topRated" style="font-size: 27px;"><i class="fa fa-fire" aria-hidden="true"></i> Top Rated</a></li>
+          <li><a id="nav-menu" class="active" href="/search" style="font-size: 27px;"><i class="fa fa-search" aria-hidden="true"></i> Search</a></li>
+          <li><a id="nav-menu" href="/watchList" style="font-size: 27px;"><i class="fa fa-list" aria-hidden="true"></i> Watchlist</a></li>
+        </ul>
+      </div>
+    </nav>
+    <ul class="sidenav" id="mobile-demo" style="background-color: #a00808 ;color: #f9ca24;">
+      <div style="background-color: #0c1114;;"><a href="#!" class="brand-logo" style="background-color:rgba(0,0,0,0); height: 56px;"><img  height="58px" width="80px" src="/images/logo4.png"/></a>
+        </div><hr>
+      <li><a id="nav-menu" class="active" href="/latest" style="font-size: 27px;color: whitesmoke ;"><i class="fa fa-film" style="color: whitesmoke" aria-hidden="true"></i> Latest</a></li>
+      <li><a id="nav-menu"  href="/topRated" style="font-size: 27px; color: whitesmoke;"><i class="fa fa-fire" style="color: whitesmoke" aria-hidden="true"></i> Top Rated</a></li>
+      <li><a id="nav-menu" href="/search" style="font-size: 27px; color: whitesmoke;"><i class="fa fa-search" style="color: whitesmoke" aria-hidden="true"></i> Search</a></li>
+      <li><a id="nav-menu" href="/watchList" style="font-size: 27px; color: whitesmoke;"><i class="fa fa-list" style="color: whitesmoke" aria-hidden="true"></i> Watchlist</a></li><hr>
+      <div class="credit center">Made with <span>&hearts; <span>by  <a href="https://arghac14.github.io" style="color: #f9ca24;"><b>arghac14</b></a></div>
+    </ul>
+    
+  </div>
+  <!-- Navbar end-->
+  <!-- <div><img  style="height: 68px; width: 70px;" src="/images/logo4.png"/></div> -->
+
+</body>
+<script>
+
+  $(document).ready(function(){
+    $('.sidenav').sidenav();
+  });
+        
+
+</script>
+
+
+</html>

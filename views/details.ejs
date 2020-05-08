@@ -1,0 +1,34 @@
+<% include ./partials/header %>
+
+<div class="spinner"></div>
+<!-- Container that will showcase the info, links, trailer, recommended list -->
+<div class="container">
+
+	<div id="movie"></div>
+	<h2 id="trailer_title">Trailer</h2>
+	<div id="trailer"></div>
+	<div id="rec_title">
+		<h1>Recommendations</h1>
+		<p>Here are some similar movies to this one:</p>
+	</div>
+	<div id="recommended"></div>
+	<div class="page">
+		<button id="prev" title="Previous page">PREVIOUS</button>
+		<button id="next" title="Next page">NEXT</button>
+	</div>
+	<div id="overlay" class="overlay"></div>
+</div>
+<!-- Smooth scroll to top button -->
+<button id="scrollToTop"><i class="material-icons upArrow">expand_less</i></button>
+
+<!-- Script links -->
+<script src="/js/config.js"></script>
+<script src="/js/global.js"></script>
+<script src="/js/details.js"></script>
+<!-- Axios link -->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+	getMovie();
+</script>
+</body>
+</html>

@@ -16,5 +16,13 @@
   "bugs": {
     "url": "https://github.com/arghac14/Cinemy/issues"
   },
-  "homepage": "https://github.com/arghac14/Cinemy#readme"
+  "homepage": "https://github.com/arghac14/Cinemy#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "ejs": "^2.6.1",
+    "mysql": "^2.16.0",
+    "nodemon": "^1.18.9",
+    "sql": "^0.78.0"
+  }
 }
