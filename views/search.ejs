@@ -1,2 +1,67 @@
 <% include ./partials/header %>
 
+<div class="container_search">
+    <form id="form" autocomplete="off">
+            <input type="text" id="inputField" placeholder="Actor, title, genre, year, director...">
+            <span id="questionMark"><i class="material-icons">info</i></span>
+     </form>
+     
+     <div class="wrap">
+        <select id="selectedGenres">
+            <option>SELECT GENRE </option>
+            <option id="28" class="tag">Action</option>
+            <option id="12" class="tag">Adventure</option>
+            <option id="16" class="tag">Animation</option>
+            <option id="35" class="tag">Comedy</option>
+            <option id="80" class="tag">Crime</option>
+            <option id="99" class="tag">Documentary</option>
+            <option id="18" class="tag">Drama</option>
+            <option id="10751" class="tag">Family</option>
+            <option id="14" class="tag">Fantasy</option>
+            <option id="36" class="tag">History</option>
+            <option id="27" class="tag">Horror</option>
+            <option id="10402" class="tag">Music</option>
+            <option id="9648" class="tag">Mystery</option>
+            <option id="10749" class="tag">Romance</option>
+            <option id="878" class="tag">Sci-Fi</option>
+            <option id="53" class="tag">Thriller</option>
+            <option id="10752" class="tag">War</option>
+            <option id="37" class="tag">Western</option>
+            <option id="10770" class="tag">TV Movie</option>
+        </select>
+   </div>
+</div>
+<!-- Notifications -->
+<div class="notification" id="added"></div>
+<div class="notification" id="alreadyStored"></div>
+
+<!-- Modal box -->
+<div class="modal">
+    <div class="modal_container">
+        <h3>INFO !</h3>
+        <hr>
+        <p>In the input field you can type in the actor, title, director, year or genre, and it will list you all the movies corresponding to the searched query. Genres: Action, Adventure,Animation, Comedy, Crime, Documentary, Drama, Family, Fantasy, History, Horror, Music, Mystery, Romance, Sci-Fi, Thriller, War, Western, TV Movie</p>
+        <button id="modalGotIt">I get it!</button>
+    </div>
+</div>
+
+<!-- Smooth scroll to top button -->
+<button id="scrollToTop"><i class="material-icons upArrow">expand_less</i></button>
+
+<!-- Showcase - area where tv shows will be listed -->
+<div class="showcase">
+<h1 id="searchedFor"></h1>
+<div id="movies" class="moviesRows"></div>
+</div>
+<div class="pages">
+<button id="prev" title="Previous page">PREVIOUS</button>
+<button id="next" title="Next page">NEXT</button>
+</div>
+<!-- Script links -->
+<script src="/js/config.js"></script>
+<script src="/js/search.js"></script>
+
+<!-- Axios link -->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</body>
+</html>
