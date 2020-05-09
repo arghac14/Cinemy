@@ -86,8 +86,8 @@ function getMovie(){
 		//If there is an error, show this.
 		.catch ((err)=>{
 			let output = "";
-			output += `<h1 id="errorTitle">Oops!</h1>
-			<p id="errorText">No information available right now! </p>
+			output += `<h1 id="errorTitle" style="color:whitesmoke">Oops!</h1>
+			<p id="errorText" style="color:whitesmoke">No information available right now! </p>
 			<div class="buttons errorBack">
 				
 			</div>`;
@@ -131,9 +131,9 @@ function getMovie(){
 				document.getElementById("trailer_title").style.display = "none";
 				trailerOutput.innerHTML =
 				 `<div class="trailer_error">
-					<h3>Oops! </h3>
+					<h3 style="color:whitesmoke">Oops! </h3>
 					<br>
-					<p>No trailer available at this moment.</p>
+					<p style="color: whitesmoke">No trailer available at this moment.</p>
 				 </div>`;
 			});
 
@@ -182,7 +182,7 @@ function getMovie(){
 				 `<div class="recommendations_error">
 					
 					<br>
-					<p>No recommendations are available at this moment. Please check later.</p>
+					<p style="color: whitesmoke">No recommendations are available at this moment. Please check later.</p>
 				 </div>`;
 			})
 }

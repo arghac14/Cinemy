@@ -1326,6 +1326,9 @@ body{
 /* Movie/tv show trailer - END. */
 
 /* Movie/tv show recommended - START. */
+
+
+
 #recommended{
 	display: grid;
 	grid-template-columns: repeat(4,1fr);
@@ -1351,38 +1354,6 @@ body{
 	}
 }
 /* If recommendations are not available */
-.recommendations_error{
-	grid-column: 1/-1;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-	font-family: "Montserrat Regular";
-}
-.recommendations_error h3{
-	font-size: 40px;
-	font-family: "Paytone One";
-}
-.recommendations_error p {
-	font-family: "Montserrat Regular";
-	font-size: 16px;
-	color: #444;
-}
-#rec_title{
-	padding: 20px;
-}
-#rec_title h1{
-	font-family: "Paytone One";
-	font-size: 40px;
-	text-transform: uppercase;
-	text-align: left;
-	color: #2f3640;
-}
-#rec_title p{
-	font-family: "Montserrat Regular";
-	font-size: 16px;
-	color: #444;
-}
 .card{
 	height: 425px;
 	color: #fff;
@@ -1460,64 +1431,20 @@ body{
 	overflow: hidden;
 	z-index: 2;
 }
-.notification{
-	background-color: #00C853;
-	padding: 10px;
-	border-radius: 3px;
-	width: 190px;
-	font-family: "Montserrat Medium", Arial, Helvetica, sans-serif;
-	color: #fff;
-	position: fixed;
-	left: 30px;
-	bottom: 20px;
-	opacity: 0;
-	box-shadow: 0 5px 5px rgba(0,0,0,0.35);
-}
-#alreadyStored{
-	background-color: #E53935;
-}
-.notification.animate{
-	animation: notification 2s forwards;
-}
-
-@keyframes notification{
-	0%{
-		opacity: 0;
-		transform:translateY(-50px);
-	}
-	50%{
-		opacity: 1;
-		transform: translateY(-100px);
-	}
-	80%{
-		opacity: 1;
-		transform: translateY(-100px);
-	}
-	100%{
-		opacity: 0;
-		transform: translateY(-100px);
-	}
-}
-/* Movie/tvshow recommended - END. */
 
 /* 		Media Queries		 */
-@media (max-width: 1207px){
-	.notification{
-		position: fixed;
-		left: 10px;
-		bottom: -50px;
-	}
-}
+
 /* Media querie for tablets and phones */
-@media (max-width: 320x){
+/* Media querie for tablets and phones */
+@media (max-width: 1024px){
 	.card .overlay{
 		position: absolute;
 		top: 0;
 		left: 0;
 		width: 100%;
 		height: 425px;
-		transition: 0.40s ease-in-out;
-		background-color: rgba(0,0,0,0.7);
+		transition: 0.30s ease-in-out;
+		background-color: rgba(0,0,0,0.6);
 	}
 	#recommended{
 		overflow-x: scroll;
@@ -1550,196 +1477,6 @@ body{
 		text-align: center;
 	}
 }
-@media (max-width: 740px){
-	#trailer iframe{
-		width: 550px;
-	}
-}
-@media (max-width: 685px){
-	.poster{
-		margin-top: 515px;
-	}
-}
-@media (max-width: 645px){
-	#trailer iframe{
-		width: 450px;
-	}
-}
-
-@media (max-width: 500px){
-	#rec_title h1, #rec_title p, #trailer_title, .plot h3, .plot p{
-		text-align: center;
-		padding: 0;
-	}
-}
-@media (max-width: 452px){
-	#trailer iframe {
-		width: 100%;
-	}
-	#rec_title h1{
-		font-size: 30px;
-	}
-}
-/* Max-width 470 px. */
-@media (max-width: 470px){
-	.buttons{
-		display: flex;
-		flex-direction: column;
-		align-items: center
-	}
-	.buttons .twitter{
-		width: 65%;
-	}
-	.buttons > *{
-		margin: 5px 0;
-		width: 65%;
-	}
-}
-/* Max-width 360 px. */
-@media (max-width: 362px){
-	.poster{
-		width: 250px;
-		padding-bottom: 0;
-	}
-	.poster img{
-		width: 100%;
-	}
-	#rec_title h1{
-		font-size: 25px;
-	}
-}
-
-
-
-
-
-
-
-.recommendedBox{
-    display: none;
-    padding: 5px;
-    width: 330px;
-    min-height: 360px;
-    overflow: hidden;
-    background-color: #f5f5f5;
-    box-shadow: 0px 3px 5px rgba(0,0,0,0.2);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-.recommendedBoxActive{
-    display: block;
-}
-#recommendedTitle {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
-    font-family: "Montserrat Black";
-    font-size: 30px;
-}
-.recommendedOutput{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-}
-.recommendedOutput > * {
-    margin: 5px;
-}
-.recommended_card{
-    width: 130px;
-    height: 130px;
-    transition: 0.15s ease;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-}
-.recommended_card .recommended_movie{
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-end;
-}
-.recommended_card .recommended_movie h2{
-    font-size: 16px;
-}
-.recommendedOverlay{
-    position: absolute;
-    width: 130px;
-    height: 130px;
-    transform: translateY(150px);
-    background-color: rgba(0,0,0,0.8);
-    transition: 0.3s ease;
-}
-.recommended_card:hover .recommendedOverlay{
-    transform: translateY(0px)
-}
-.recommendedInfo{
-    font-size: 12px;
-    font-family: "Montserrat Regular";
-    color: #f5f5f5;
-    position: absolute;
-    bottom: 0;
-    padding: 5px;
-    word-break: break-all;
-}
-.recommendedOutput .recommended_card .recommended_cardImg {
-    width: 130px;
-    height:130px;
-}
-.recommendedOutput .recommended_card .recommended_cardImg img{
-    width: 100%;
-    height: 100%;
-}
-.recommended_card:hover{
-    box-shadow: 0px 3px 5px rgba(0,0,0,0.3);
-}
-#closeRecommended{
-    padding: 5px;
-    border: none;
-    background-color: #2f3640;
-    color: #f5f5f5;
-    font-family: "Ubuntu";
-    cursor: pointer;
-    transition: 0.1s ease;
-    margin: 10px 0;
-    margin-left: 25px;
-}
-#closeRecommended:hover{
-    background-color: #e1302a;
-}
-.reload{
-    display: block;
-    background-color: #e1302a;
-    padding: 2px;
-    font-size: 22px;
-    border-radius: 3px;
-    color: #f5f5f5;
-    cursor: pointer;
-    transition: 0.3s ease;
-}
-.reload i {
-    display: block;
-}
-.refresh{
-    transition: 0.3s ease;
-}
-.reload:hover .refresh{
-    animation: refresh 0.6s ease forwards infinite;
-}
-@keyframes refresh{
-    0%{
-        transform: rotate(0deg);
-    }
-    100%{
-        transform: rotate(180deg);
-    }
-}
-
-
-
 
 
 
