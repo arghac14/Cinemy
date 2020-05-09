@@ -22,4 +22,4 @@ app.get('/search', search);
 app.get('/watchList', watchList);
 app.get('/details', details);
 
-app.listen(3000);
+app.listen(5050);

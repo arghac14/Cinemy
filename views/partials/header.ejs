@@ -19,8 +19,11 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
        
   
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
   <link rel="stylesheet" type="text/css" href="/css/style.css">
+  <script src="/js/global.js"></script>
 
   
 </head>
@@ -61,8 +64,12 @@
   $(document).ready(function(){
     $('.sidenav').sidenav();
   });
-        
+      
+  AOS.init();
 
+</script>
+<script>     
+  AOS.init();
 </script>
 
 

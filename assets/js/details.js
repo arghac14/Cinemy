@@ -37,11 +37,12 @@ function getMovie(){
 			
 			let output = `
 			<div class="moviePage">
-			<div class="poster"><img src="http://image.tmdb.org/t/p/w300/${movie.poster_path}"></div>
+			<div class="poster" ><img data-aos:"flip-left" src="http://image.tmdb.org/t/p/w300/${movie.poster_path}"></div>
 			<div class="info">
-				<h2>${movie.title}</h2>
-				<ul>
-					<li><strong>Cast:</strong> `;
+				<b><h2 style="color: whitesmoke">${movie.title}</h2></b><hr>
+				<h4 style="color: #f9ca24">Plot:</h4><p style="color: whitesmoke"> ${movie.overview}</p>
+				<ul >
+					<li> <b style="color:#f9ca24">Cast:</b> <span style="color: whitesmoke">`;
 					for (let i = 0; i < cast.length; i++) {
 						if (i != cast.length - 1) {
 							output += `${cast[i].name}, `;
@@ -49,8 +50,8 @@ function getMovie(){
 							output += `${cast[i].name}.`;
 						}
 					}
-					output += `</li>
-					<li><strong>Genres:</strong> `;
+					output += `</span></li>
+					<li><b style="color:#f9ca24">Genres:</b> <span style="color: whitesmoke">`;
 					for(let i = 0; i < genres.length; i++){
 						if ( i != genres.length -1){
 							output += `${genres[i].name}, `;
@@ -58,26 +59,23 @@ function getMovie(){
 							output += `${genres[i].name}.`;
 						}
 					}
-					output += `</li>
-					<li><strong>Tagline:</strong> ${movie.tagline} </li>
-					<li><strong>Release Date:</strong> ${movie.release_date}</li>
-					<li><strong>Runtime:</strong> ${movie.runtime} (min)</li>
-					<li><strong>Rating:</strong> ${movie.vote_average} / 10 <span id="smallText">(${movie.vote_count} votes)</span></li>
-					<li><strong>Revenue:</strong> ${revenue}</li>
-					<li><strong>Status:</strong> ${movie.status}</li>
-					<li><strong>Production companies:</strong> ${movie.production_companies[0].name}</li>
+					output += `</span></li>
+		
+					<li><b style="color:#f9ca24">Rating: </b><span style="color:whitesmoke"> ${movie.vote_average} / 10 </span><span id="smallText" style="color: whitesmoke">( ${movie.vote_count} votes)</span></li>
+					
+					<li> <b style="color:#f9ca24"> Runtime: </b><span style="color:whitesmoke">${movie.runtime} minutes</span></li>
+					<li><b style="color:#f9ca24"> Release Date:</b></strong><span style="color:whitesmoke"> ${movie.release_date}</span></li>
+					
+					<li><b style="color:#f9ca24">Revenue:</b> <span style="color:whitesmoke">${revenue}</span></li>
+					<li><b style="color:#f9ca24">Production House:</b><span style="color:whitesmoke"> ${movie.production_companies[0].name}</span></li>
+					<li><b style="color:#f9ca24">IMDB link: </b><a href="https://www.imdb.com/title/${movie.imdb_id}" target="_blank"><span style="color:skyblue">click here</span></a></li>
+					
 				</ul>
+				
 				<div class="buttons">
-					<a href="https://www.imdb.com/title/${movie.imdb_id}" target="_blank"> IMDB Link </a>
-					<a id="addToWatchList" onclick="addToList('${movie.id}')"> Add to watchlist </a>
-					<a class="twitter-share-button twitter" onclick="tweet('${movie.title}')"></a>
-					<a onclick="goBack()"> Go back </a>
+					
 				</div>
 			</div>
-		</div>
-		<div class="plot">
-			<h3>Plot</h3>
-			<p>${movie.overview}</p>
 		</div>`;
 
 		//Targets the "movie" element and appends the output to it.
@@ -88,10 +86,10 @@ function getMovie(){
 		//If there is an error, show this.
 		.catch ((err)=>{
 			let output = "";
-			output += `<h1 id="errorTitle">SORRY !</h1>
-			<p id="errorText">We could not provide informations about this movie at this particular moment. Be sure to come back again. Thank you for your understanding. </p>
+			output += `<h1 id="errorTitle">Oops!</h1>
+			<p id="errorText">No information available right now! </p>
 			<div class="buttons errorBack">
-				<a onclick="goBack()"> Go back </a>
+				
 			</div>`;
 			// Hide elements if theres an error.
 			let info = document.getElementById("movie");
@@ -133,9 +131,9 @@ function getMovie(){
 				document.getElementById("trailer_title").style.display = "none";
 				trailerOutput.innerHTML =
 				 `<div class="trailer_error">
-					<h3>We are sorry! </h3>
+					<h3>Oops! </h3>
 					<br>
-					<p>No video available at this moment. Try reloading the page.</p>
+					<p>No trailer available at this moment.</p>
 				 </div>`;
 			});
 
@@ -149,14 +147,20 @@ function getMovie(){
 				for(let i = 0; i < movie.length; i++){
 					output += `
 					<div class="card">
-						<div class="overlay">
-						<div class="movie">
-							<h2>${movie[i].title}</h2>
-								<p id="p_rating"><strong>Rating:</strong> <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
-								<p><strong>Release date:</strong> <span>${movie[i].release_date} <i class="material-icons date">date_range</i> </span></p>
-								<a onclick="movieSelected('${movie[i].id}')" href="#">Details</a>
-						</div>
-						</div>
+					<div class="overlay">
+					<div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span></div>
+					
+					
+					<div class="movie" style="bottom:10%"> 
+					<p><b> ${movie[i].title}</b></p>
+						<p id="p_rating">Rating: <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
+					  
+						<p> Release date: <span>${movie[i].release_date}</span></p>
+					
+						<a style="background-color: rgba(199, 1, 1,0.7); color: #f9ca24; border-radius: 10px 0 10px 0; display=inline" onclick="movieSelected('${movie[i].id}')" href="#"><i class="fa fa-info"> </i>&nbsp Info</a>
+						
+				</div>
+				</div>
 						<div class="card_img">
 							<img src="http://image.tmdb.org/t/p/w400/${movie[i].poster_path}" onerror="this.onerror=null;this.src='../images/imageNotFound.png';">
 						</div>
@@ -176,7 +180,7 @@ function getMovie(){
 				document.querySelector(".page").style.display = "none";
 				recommended.innerHTML =
 				 `<div class="recommendations_error">
-					<h3>We are sorry! </h3>
+					
 					<br>
 					<p>No recommendations are available at this moment. Please check later.</p>
 				 </div>`;
@@ -219,13 +223,19 @@ function recommendedPage(pageNum){
 				for(let i = 0; i < movie.length; i++) {
 					output += `<div class="card">
 					<div class="overlay">
-					<div class="movie">
-						<h2>${movie[i].title}</h2>
-						<p id="p_rating"><strong>Rating:</strong> <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
-						<p><strong>Release date:</strong> <span>${movie[i].release_date} <i class="material-icons date">date_range</i> </span></p>
-						<a onclick="movieSelected('${movie[i].id}')" href="#">Details</a>
-					 </div>
-					</div>
+					<div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span></div>
+					
+					
+					<div class="movie" style="bottom:10%"> 
+					<p><b> ${movie[i].title}</b></p>
+						<p id="p_rating">Rating: <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
+					  
+						<p> Release date: <span>${movie[i].release_date}</span></p>
+					
+						<a style="background-color: rgba(199, 1, 1,0.7); color: #f9ca24; border-radius: 10px 0 10px 0; display=inline" onclick="movieSelected('${movie[i].id}')" href="#"><i class="fa fa-info"> </i>&nbsp Info</a>
+						
+				</div>
+				</div>
 					<div class="card_img">
 						<img src="http://image.tmdb.org/t/p/w300/${movie[i].poster_path}" onerror="this.onerror=null;this.src='../images/imageNotFound.png';">
 					</div>

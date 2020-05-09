@@ -44,26 +44,30 @@ form.addEventListener("submit", (e)=>{
         // No matter if the user types in all lower case letters, or random, it will still load the needed data.
         searchedFor.style.fontSize = "50px";
         const id = genresObject[input.trim().toUpperCase(input)];
-        searchedFor.innerHTML = "Genre: " + "<span>" +input+ "</span>"
+        searchedFor.innerHTML = "Search Item: " + "<span style="+"color:#f9ca24>" +input+ "</span>"
         genres(id);
     }
     else if(isNaN(input)){
         pageNum = 1;
         // If the input value is a STRING :
-        searchedFor.innerHTML = "Movie title / Actor: " +"<span>" +input+ "</span>"
+        searchedFor.innerHTML = "Searched Item: " +"<span style="+"color:#f9ca24>" +input+ "</span>"
         searchedFor.style.fontSize = "30px";
+        searchedFor.style.color="whitesmoke ";
         searchMovies(input);
         discoverByActor(input).then(moviesByActor); 
     } else {
         pageNum = 1;
         //Call function.
         searchedFor.style.fontSize = "50px";
-        searchedFor.innerHTML = "Year: " + "<span>" +input+ "</span>";
+        searchedFor.innerHTML = "Searched Item: " + "<span style="+"color:#f9ca24>" +input+ "</span>"
         discoverMovies(input)
     }
     e.preventDefault();
 })
 // MOVIES BY TITLE.
+//<div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span>
+//<span><i class="material-icons favorite" onclick="favorite('${movie[i].id}')">favorite</i></span></div>
+
 function searchMovies(searchText){
     selectedGenres.style.display = "none";
     pageNum = 1;
@@ -72,24 +76,29 @@ function searchMovies(searchText){
 		.then( (response) =>{
             let movie = response.data.results;
             let output = "";
-            
+            console.log(movie)
 			//Appends to the output the info for each fetched result.
 			for(let i = 0; i < movie.length; i++){
 				let id = response.data.results[i].id;
 				id = JSON.stringify(id);
 				let favoriteMovies = JSON.parse(localStorage.getItem("favoriteMovies")) || [];
-				if(favoriteMovies.indexOf(id) === -1){
+                
+                if(favoriteMovies.indexOf(id) === -1){
 					output += `
 					<div class="card">
-						<div class="overlay">
-						<div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span>
-						<span><i class="material-icons favorite" onclick="favorite('${movie[i].id}')">favorite</i></span></div>
-						<div class="movie">
-							<h2>${movie[i].title}</h2>
-								<p id="p_rating"><strong>Rating:</strong> <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
-								<p><strong>Release date:</strong> <span>${movie[i].release_date} <i class="material-icons date">date_range</i> </span></p>
-								<a onclick="movieSelected('${movie[i].id}')" href="#">Details</a>
-						</div>
+                        <div class="overlay">
+                        <div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span></div>
+						
+						
+						<div class="movie" style="bottom:10%"> 
+							<p><b> ${movie[i].title}</b></p>
+								<p id="p_rating">Rating: <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
+                              
+                                <p> Release date: <span>${movie[i].release_date}</span></p>
+                            
+                                <a style="background-color: rgba(199, 1, 1,0.7); color: #f9ca24; border-radius: 10px 0 10px 0; display=inline" onclick="movieSelected('${movie[i].id}')" href="#"><i class="fa fa-info"> </i>&nbsp Info</a>
+                                
+                        </div>
 						</div>
 						<div class="card_img">
 							<img src="http://image.tmdb.org/t/p/w400/${movie[i].poster_path}" onerror="this.onerror=null;this.src='../images/imageNotFound.png';">
@@ -100,13 +109,16 @@ function searchMovies(searchText){
 					output += `
                     <div class="card">
                     <div class="overlay">
-                    <div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span>
-                    <span><i class="material-icons favoriteMarked" onclick="favorite('${movie[i].id}')">favorite</i></span></div>
-                    <div class="movie">
-                        <h2>${movie[i].title}</h2>
-                            <p id="p_rating"><strong>Rating:</strong> <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
-                            <p><strong>Release date:</strong> <span>${movie[i].release_date} <i class="material-icons date">date_range</i> </span></p>
-                            <a onclick="movieSelected('${movie[i].id}')" href="#">Details</a>
+                    <div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span></div>
+                    
+						<div class="movie" style="bottom:10%"> 
+                        <p><b> ${movie[i].title}</b></p>
+                            <p id="p_rating">Rating: <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
+                          
+                            <p> Release date: <span>${movie[i].release_date}</span></p>
+                        
+                            <a style="background-color: rgba(199, 1, 1,0.7); color: #f9ca24; border-radius: 10px 0 10px 0; display=inline" onclick="movieSelected('${movie[i].id}')" href="#"><i class="fa fa-info"> </i>&nbsp Info</a>
+                            
                     </div>
                     </div>
                     <div class="card_img">
@@ -172,15 +184,19 @@ function moviesByActor(){
 				if(favoriteMovies.indexOf(id) === -1){
 					output += `
 					<div class="card">
-						<div class="overlay">
-						<div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span>
-						<span><i class="material-icons favorite" onclick="favorite('${movie[i].id}')">favorite</i></span></div>
-						<div class="movie">
-							<h2>${movie[i].title}</h2>
-								<p id="p_rating"><strong>Rating:</strong> <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
-								<p><strong>Release date:</strong> <span>${movie[i].release_date} <i class="material-icons date">date_range</i> </span></p>
-								<a onclick="movieSelected('${movie[i].id}')" href="#">Details</a>
-						</div>
+                        <div class="overlay">
+                        <div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span></div>
+						
+						
+						<div class="movie" style="bottom:10%"> 
+							<p><b> ${movie[i].title}</b></p>
+								<p id="p_rating">Rating: <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
+                              
+                                <p> Release date: <span>${movie[i].release_date}</span></p>
+                            
+                                <a style="background-color: rgba(199, 1, 1,0.7); color: #f9ca24; border-radius: 10px 0 10px 0; display=inline" onclick="movieSelected('${movie[i].id}')" href="#"><i class="fa fa-info"> </i>&nbsp Info</a>
+                                
+                        </div>
 						</div>
 						<div class="card_img">
 							<img src="http://image.tmdb.org/t/p/w400/${movie[i].poster_path}" onerror="this.onerror=null;this.src='../images/imageNotFound.png';">
@@ -191,13 +207,17 @@ function moviesByActor(){
 					output += `
                     <div class="card">
                     <div class="overlay">
-                    <div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span>
-                    <span><i class="material-icons favoriteMarked" onclick="favorite('${movie[i].id}')">favorite</i></span></div>
-                    <div class="movie">
-                        <h2>${movie[i].title}</h2>
-                            <p id="p_rating"><strong>Rating:</strong> <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
-                            <p><strong>Release date:</strong> <span>${movie[i].release_date} <i class="material-icons date">date_range</i> </span></p>
-                            <a onclick="movieSelected('${movie[i].id}')" href="#">Details</a>
+                    <div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span></div>
+                    
+                   
+						<div class="movie" style="bottom:10%"> 
+                        <p><b> ${movie[i].title}</b></p>
+                            <p id="p_rating">Rating: <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
+                          
+                            <p> Release date: <span>${movie[i].release_date}</span></p>
+                        
+                            <a style="background-color: rgba(199, 1, 1,0.7); color: #f9ca24; border-radius: 10px 0 10px 0; display=inline" onclick="movieSelected('${movie[i].id}')" href="#"><i class="fa fa-info"> </i>&nbsp Info</a>
+                            
                     </div>
                     </div>
                     <div class="card_img">
@@ -238,15 +258,19 @@ function moviesByActor(){
 				if(favoriteMovies.indexOf(id) === -1){
 					output += `
 					<div class="card">
-						<div class="overlay">
-						<div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span>
-						<span><i class="material-icons favorite" onclick="favorite('${movie[i].id}')">favorite</i></span></div>
-						<div class="movie">
-							<h2>${movie[i].title}</h2>
-								<p id="p_rating"><strong>Rating:</strong> <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
-								<p><strong>Release date:</strong> <span>${movie[i].release_date} <i class="material-icons date">date_range</i> </span></p>
-								<a onclick="movieSelected('${movie[i].id}')" href="#">Details</a>
-						</div>
+                        <div class="overlay">
+                        <div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span></div>
+						
+						
+						<div class="movie" style="bottom:10%"> 
+							<p><b> ${movie[i].title}</b></p>
+								<p id="p_rating">Rating: <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
+                              
+                                <p> Release date: <span>${movie[i].release_date}</span></p>
+                            
+                                <a style="background-color: rgba(199, 1, 1,0.7); color: #f9ca24; border-radius: 10px 0 10px 0; display=inline" onclick="movieSelected('${movie[i].id}')" href="#"><i class="fa fa-info"> </i>&nbsp Info</a>
+                                
+                        </div>
 						</div>
 						<div class="card_img">
 							<img src="http://image.tmdb.org/t/p/w400/${movie[i].poster_path}" onerror="this.onerror=null;this.src='../images/imageNotFound.png';">
@@ -256,16 +280,20 @@ function moviesByActor(){
 				} else {
 					output += `
                     <div class="card">
-						<div class="overlay">
-						<div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span>
-						<span><i class="material-icons favoriteMarked" onclick="favorite('${movie[i].id}')">favorite</i></span></div>
-						<div class="movie">
-							<h2>${movie[i].title}</h2>
-								<p id="p_rating"><strong>Rating:</strong> <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
-								<p><strong>Release date:</strong> <span>${movie[i].release_date} <i class="material-icons date">date_range</i> </span></p>
-								<a onclick="movieSelected('${movie[i].id}')" href="#">Details</a>
-						</div>
-						</div>
+                    <div class="overlay">
+                    <div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span></div>
+                    
+                   
+						<div class="movie" style="bottom:10%"> 
+                        <p><b> ${movie[i].title}</b></p>
+                            <p id="p_rating">Rating: <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
+                          
+                            <p> Release date: <span>${movie[i].release_date}</span></p>
+                        
+                            <a style="background-color: rgba(199, 1, 1,0.7); color: #f9ca24; border-radius: 10px 0 10px 0; display=inline" onclick="movieSelected('${movie[i].id}')" href="#"><i class="fa fa-info"> </i>&nbsp Info</a>
+                            
+                    </div>
+                    </div>
 						<div class="card_img">
 							<img src="http://image.tmdb.org/t/p/w400/${movie[i].poster_path}" onerror="this.onerror=null;this.src='../images/imageNotFound.png';">
 						</div>
@@ -312,15 +340,19 @@ function discoverMovies(year){
 				if(favoriteMovies.indexOf(id) === -1){
 					output += `
 					<div class="card">
-						<div class="overlay">
-						<div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span>
-						<span><i class="material-icons favorite" onclick="favorite('${movie[i].id}')">favorite</i></span></div>
-						<div class="movie">
-							<h2>${movie[i].title}</h2>
-								<p id="p_rating"><strong>Rating:</strong> <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
-								<p><strong>Release date:</strong> <span>${movie[i].release_date} <i class="material-icons date">date_range</i> </span></p>
-								<a onclick="movieSelected('${movie[i].id}')" href="#">Details</a>
-						</div>
+                        <div class="overlay">
+                        <div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span></div>
+						
+					
+						<div class="movie" style="bottom:10%"> 
+							<p><b> ${movie[i].title}</b></p>
+								<p id="p_rating">Rating: <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
+                              
+                                <p> Release date: <span>${movie[i].release_date}</span></p>
+                            
+                                <a style="background-color: rgba(199, 1, 1,0.7); color: #f9ca24; border-radius: 10px 0 10px 0; display=inline" onclick="movieSelected('${movie[i].id}')" href="#"><i class="fa fa-info"> </i>&nbsp Info</a>
+                                
+                        </div>
 						</div>
 						<div class="card_img">
 							<img src="http://image.tmdb.org/t/p/w400/${movie[i].poster_path}" onerror="this.onerror=null;this.src='../images/imageNotFound.png';">
@@ -331,16 +363,19 @@ function discoverMovies(year){
 					output += `
                     <div class="card">
                     <div class="overlay">
-                    <div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span>
-                    <span><i class="material-icons favoriteMarked" onclick="favorite('${movie[i].id}')">favorite</i></span></div>
-                    <div class="movie">
-                        <h2>${movie[i].title}</h2>
-                            <p id="p_rating"><strong>Rating:</strong> <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
-                            <p><strong>Release date:</strong> <span>${movie[i].release_date} <i class="material-icons date">date_range</i> </span></p>
-                            <a onclick="movieSelected('${movie[i].id}')" href="#">Details</a>
+                    <div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span></div>
+                    
+                 
+						<div class="movie" style="bottom:10%"> 
+                        <p><b> ${movie[i].title}</b></p>
+                            <p id="p_rating">Rating: <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
+                          
+                            <p> Release date: <span>${movie[i].release_date}</span></p>
+                        
+                            <a style="background-color: rgba(199, 1, 1,0.7); color: #f9ca24; border-radius: 10px 0 10px 0; display=inline" onclick="movieSelected('${movie[i].id}')" href="#"><i class="fa fa-info"> </i>&nbsp Info</a>
+                            
                     </div>
                     </div>
-                    <div class="card_img">
                         <img src="http://image.tmdb.org/t/p/w400/${movie[i].poster_path}" onerror="this.onerror=null;this.src='../images/imageNotFound.png';">
                     </div>
                 </div>
@@ -378,17 +413,21 @@ function discoverMovies(year){
 				let favoriteMovies = JSON.parse(localStorage.getItem("favoriteMovies")) || [];
 				if(favoriteMovies.indexOf(id) === -1){
 					output += `
-					<div class="card">
-						<div class="overlay">
-						<div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span>
-						<span><i class="material-icons favorite" onclick="favorite('${movie[i].id}')">favorite</i></span></div>
-						<div class="movie">
-							<h2>${movie[i].title}</h2>
-								<p id="p_rating"><strong>Rating:</strong> <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
-								<p><strong>Release date:</strong> <span>${movie[i].release_date} <i class="material-icons date">date_range</i> </span></p>
-								<a onclick="movieSelected('${movie[i].id}')" href="#">Details</a>
-						</div>
-						</div>
+                    <div class="card">
+                    <div class="overlay">
+                    <div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span></div>
+                    
+                  
+						<div class="movie" style="bottom:10%"> 
+                        <p><b> ${movie[i].title}</b></p>
+                            <p id="p_rating">Rating: <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
+                          
+                            <p> Release date: <span>${movie[i].release_date}</span></p>
+                        
+                            <a style="background-color: rgba(199, 1, 1,0.7); color: #f9ca24; border-radius: 10px 0 10px 0; display=inline" onclick="movieSelected('${movie[i].id}')" href="#"><i class="fa fa-info"> </i>&nbsp Info</a>
+                            
+                    </div>
+                    </div>
 						<div class="card_img">
 							<img src="http://image.tmdb.org/t/p/w400/${movie[i].poster_path}" onerror="this.onerror=null;this.src='../images/imageNotFound.png';">
 						</div>
@@ -397,17 +436,20 @@ function discoverMovies(year){
 				} else {
 					output += `
                     <div class="card">
-                    <div class="overlay">
-                    <div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span>
-                    <span><i class="material-icons favoriteMarked" onclick="favorite('${movie[i].id}')">favorite</i></span></div>
-                    <div class="movie">
-                        <h2>${movie[i].title}</h2>
-                            <p id="p_rating"><strong>Rating:</strong> <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
-                            <p><strong>Release date:</strong> <span>${movie[i].release_date} <i class="material-icons date">date_range</i> </span></p>
-                            <a onclick="movieSelected('${movie[i].id}')" href="#">Details</a>
-                    </div>
-                    </div>
-                    <div class="card_img">
+                        <div class="overlay">
+                        <div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span></div>
+						
+				
+						<div class="movie" style="bottom:10%"> 
+							<p><b> ${movie[i].title}</b></p>
+								<p id="p_rating">Rating: <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
+                              
+                                <p> Release date: <span>${movie[i].release_date}</span></p>
+                            
+                                <a style="background-color: rgba(199, 1, 1,0.7); color: #f9ca24; border-radius: 10px 0 10px 0; display=inline" onclick="movieSelected('${movie[i].id}')" href="#"><i class="fa fa-info"> </i>&nbsp Info</a>
+                                
+                        </div>
+						</div>
                         <img src="http://image.tmdb.org/t/p/w400/${movie[i].poster_path}" onerror="this.onerror=null;this.src='../images/imageNotFound.png';">
                     </div>
                 </div>
@@ -454,17 +496,21 @@ function genres(id){
 				let favoriteMovies = JSON.parse(localStorage.getItem("favoriteMovies")) || [];
 				if(favoriteMovies.indexOf(id) === -1){
 					output += `
-					<div class="card">
-						<div class="overlay">
-						<div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span>
-						<span><i class="material-icons favorite" onclick="favorite('${movie[i].id}')">favorite</i></span></div>
-						<div class="movie">
-							<h2>${movie[i].title}</h2>
-								<p id="p_rating"><strong>Rating:</strong> <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
-								<p><strong>Release date:</strong> <span>${movie[i].release_date} <i class="material-icons date">date_range</i> </span></p>
-								<a onclick="movieSelected('${movie[i].id}')" href="#">Details</a>
-						</div>
-						</div>
+                    <div class="card">
+                    <div class="overlay">
+                    <div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span></div>
+                    
+                   
+						<div class="movie" style="bottom:10%"> 
+                        <p><b> ${movie[i].title}</b></p>
+                            <p id="p_rating">Rating: <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
+                          
+                            <p> Release date: <span>${movie[i].release_date}</span></p>
+                        
+                            <a style="background-color: rgba(199, 1, 1,0.7); color: #f9ca24; border-radius: 10px 0 10px 0; display=inline" onclick="movieSelected('${movie[i].id}')" href="#"><i class="fa fa-info"> </i>&nbsp Info</a>
+                            
+                    </div>
+                    </div>
 						<div class="card_img">
 							<img src="http://image.tmdb.org/t/p/w400/${movie[i].poster_path}" onerror="this.onerror=null;this.src='../images/imageNotFound.png';">
 						</div>
@@ -474,13 +520,17 @@ function genres(id){
 					output += `
                     <div class="card">
                     <div class="overlay">
-                    <div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span>
-                    <span><i class="material-icons favoriteMarked" onclick="favorite('${movie[i].id}')">favorite</i></span></div>
-                    <div class="movie">
-                        <h2>${movie[i].title}</h2>
-                            <p id="p_rating"><strong>Rating:</strong> <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
-                            <p><strong>Release date:</strong> <span>${movie[i].release_date} <i class="material-icons date">date_range</i> </span></p>
-                            <a onclick="movieSelected('${movie[i].id}')" href="#">Details</a>
+                    <div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span></div>
+                    
+               
+						<div class="movie" style="bottom:10%"> 
+                        <p><b> ${movie[i].title}</b></p>
+                            <p id="p_rating">Rating: <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
+                          
+                            <p> Release date: <span>${movie[i].release_date}</span></p>
+                        
+                            <a style="background-color: rgba(199, 1, 1,0.7); color: #f9ca24; border-radius: 10px 0 10px 0; display=inline" onclick="movieSelected('${movie[i].id}')" href="#"><i class="fa fa-info"> </i>&nbsp Info</a>
+                            
                     </div>
                     </div>
                     <div class="card_img">
@@ -568,15 +618,19 @@ function movieByActorPage(pageNum){
 				if(favoriteMovies.indexOf(id) === -1){
 					output += `
 					<div class="card">
-						<div class="overlay">
-						<div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span>
-						<span><i class="material-icons favorite" onclick="favorite('${movie[i].id}')">favorite</i></span></div>
-						<div class="movie">
-							<h2>${movie[i].title}</h2>
-								<p id="p_rating"><strong>Rating:</strong> <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
-								<p><strong>Release date:</strong> <span>${movie[i].release_date} <i class="material-icons date">date_range</i> </span></p>
-								<a onclick="movieSelected('${movie[i].id}')" href="#">Details</a>
-						</div>
+                        <div class="overlay">
+                        <div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span></div>
+						
+					
+						<div class="movie" style="bottom:10%"> 
+							<p><b> ${movie[i].title}</b></p>
+								<p id="p_rating">Rating: <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
+                              
+                                <p> Release date: <span>${movie[i].release_date}</span></p>
+                            
+                                <a style="background-color: rgba(199, 1, 1,0.7); color: #f9ca24; border-radius: 10px 0 10px 0; display=inline" onclick="movieSelected('${movie[i].id}')" href="#"><i class="fa fa-info"> </i>&nbsp Info</a>
+                                
+                        </div>
 						</div>
 						<div class="card_img">
 							<img src="http://image.tmdb.org/t/p/w400/${movie[i].poster_path}" onerror="this.onerror=null;this.src='../images/imageNotFound.png';">
@@ -586,16 +640,19 @@ function movieByActorPage(pageNum){
 				} else {
 					output += `
                     <div class="card">
-                    <div class="overlay">
-                    <div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span>
-                    <span><i class="material-icons favoriteMarked" onclick="favorite('${movie[i].id}')">favorite</i></span></div>
-                    <div class="movie">
-                        <h2>${movie[i].title}</h2>
-                            <p id="p_rating"><strong>Rating:</strong> <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
-                            <p><strong>Release date:</strong> <span>${movie[i].release_date} <i class="material-icons date">date_range</i> </span></p>
-                            <a onclick="movieSelected('${movie[i].id}')" href="#">Details</a>
-                    </div>
-                    </div>
+                        <div class="overlay">
+                        <div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span></div>
+					
+						<div class="movie" style="bottom:10%"> 
+							<p><b> ${movie[i].title}</b></p>
+								<p id="p_rating">Rating: <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
+                              
+                                <p> Release date: <span>${movie[i].release_date}</span></p>
+                            
+                                <a style="background-color: rgba(199, 1, 1,0.7); color: #f9ca24; border-radius: 10px 0 10px 0; display=inline" onclick="movieSelected('${movie[i].id}')" href="#"><i class="fa fa-info"> </i>&nbsp Info</a>
+                                
+                        </div>
+						</div>
                     <div class="card_img">
                         <img src="http://image.tmdb.org/t/p/w400/${movie[i].poster_path}" onerror="this.onerror=null;this.src='../images/imageNotFound.png';">
                     </div>
@@ -637,17 +694,20 @@ function movieByYearPage(pageNum){
 				let favoriteMovies = JSON.parse(localStorage.getItem("favoriteMovies")) || [];
 				if(favoriteMovies.indexOf(id) === -1){
 					output += `
-					<div class="card">
-						<div class="overlay">
-						<div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span>
-						<span><i class="material-icons favorite" onclick="favorite('${movie[i].id}')">favorite</i></span></div>
-						<div class="movie">
-							<h2>${movie[i].title}</h2>
-								<p id="p_rating"><strong>Rating:</strong> <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
-								<p><strong>Release date:</strong> <span>${movie[i].release_date} <i class="material-icons date">date_range</i> </span></p>
-								<a onclick="movieSelected('${movie[i].id}')" href="#">Details</a>
-						</div>
-						</div>
+                    <div class="card">
+                    <div class="overlay">
+                    <div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span></div>
+                   
+						<div class="movie" style="bottom:10%"> 
+                        <p><b> ${movie[i].title}</b></p>
+                            <p id="p_rating">Rating: <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
+                          
+                            <p> Release date: <span>${movie[i].release_date}</span></p>
+                        
+                            <a style="background-color: rgba(199, 1, 1,0.7); color: #f9ca24; border-radius: 10px 0 10px 0; display=inline" onclick="movieSelected('${movie[i].id}')" href="#"><i class="fa fa-info"> </i>&nbsp Info</a>
+                            
+                    </div>
+                    </div>
 						<div class="card_img">
 							<img src="http://image.tmdb.org/t/p/w400/${movie[i].poster_path}" onerror="this.onerror=null;this.src='../images/imageNotFound.png';">
 						</div>
@@ -657,13 +717,17 @@ function movieByYearPage(pageNum){
 					output += `
                     <div class="card">
                     <div class="overlay">
-                    <div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span>
-                    <span><i class="material-icons favoriteMarked" onclick="favorite('${movie[i].id}')">favorite</i></span></div>
-                    <div class="movie">
-                        <h2>${movie[i].title}</h2>
-                            <p id="p_rating"><strong>Rating:</strong> <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
-                            <p><strong>Release date:</strong> <span>${movie[i].release_date} <i class="material-icons date">date_range</i> </span></p>
-                            <a onclick="movieSelected('${movie[i].id}')" href="#">Details</a>
+                    <div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span></div>
+                    
+                   
+						<div class="movie" style="bottom:10%"> 
+                        <p><b> ${movie[i].title}</b></p>
+                            <p id="p_rating">Rating: <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
+                          
+                            <p> Release date: <span>${movie[i].release_date}</span></p>
+                        
+                            <a style="background-color: rgba(199, 1, 1,0.7); color: #f9ca24; border-radius: 10px 0 10px 0; display=inline" onclick="movieSelected('${movie[i].id}')" href="#"><i class="fa fa-info"> </i>&nbsp Info</a>
+                            
                     </div>
                     </div>
                     <div class="card_img">
@@ -703,17 +767,21 @@ function movieByGenrePage(pageNum){
 				let favoriteMovies = JSON.parse(localStorage.getItem("favoriteMovies")) || [];
 				if(favoriteMovies.indexOf(id) === -1){
 					output += `
-					<div class="card">
-						<div class="overlay">
-						<div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span>
-						<span><i class="material-icons favorite" onclick="favorite('${movie[i].id}')">favorite</i></span></div>
-						<div class="movie">
-							<h2>${movie[i].title}</h2>
-								<p id="p_rating"><strong>Rating:</strong> <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
-								<p><strong>Release date:</strong> <span>${movie[i].release_date} <i class="material-icons date">date_range</i> </span></p>
-								<a onclick="movieSelected('${movie[i].id}')" href="#">Details</a>
-						</div>
-						</div>
+                    <div class="card">
+                    <div class="overlay">
+                    <div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span></div>
+                    
+                  
+						<div class="movie" style="bottom:10%"> 
+                        <p><b> ${movie[i].title}</b></p>
+                            <p id="p_rating">Rating: <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
+                          
+                            <p> Release date: <span>${movie[i].release_date}</span></p>
+                        
+                            <a style="background-color: rgba(199, 1, 1,0.7); color: #f9ca24; border-radius: 10px 0 10px 0; display=inline" onclick="movieSelected('${movie[i].id}')" href="#"><i class="fa fa-info"> </i>&nbsp Info</a>
+                            
+                    </div>
+                    </div>
 						<div class="card_img">
 							<img src="http://image.tmdb.org/t/p/w400/${movie[i].poster_path}" onerror="this.onerror=null;this.src='../images/imageNotFound.png';">
 						</div>
@@ -723,13 +791,17 @@ function movieByGenrePage(pageNum){
 					output += `
                     <div class="card">
                     <div class="overlay">
-                    <div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span>
-                    <span><i class="material-icons favoriteMarked" onclick="favorite('${movie[i].id}')">favorite</i></span></div>
-                    <div class="movie">
-                        <h2>${movie[i].title}</h2>
-                            <p id="p_rating"><strong>Rating:</strong> <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
-                            <p><strong>Release date:</strong> <span>${movie[i].release_date} <i class="material-icons date">date_range</i> </span></p>
-                            <a onclick="movieSelected('${movie[i].id}')" href="#">Details</a>
+                    <div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span></div>
+                    
+                 
+						<div class="movie" style="bottom:10%"> 
+                        <p><b> ${movie[i].title}</b></p>
+                            <p id="p_rating">Rating: <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
+                          
+                            <p> Release date: <span>${movie[i].release_date}</span></p>
+                        
+                            <a style="background-color: rgba(199, 1, 1,0.7); color: #f9ca24; border-radius: 10px 0 10px 0; display=inline" onclick="movieSelected('${movie[i].id}')" href="#"><i class="fa fa-info"> </i>&nbsp Info</a>
+                            
                     </div>
                     </div>
                     <div class="card_img">
@@ -770,17 +842,21 @@ function movieByTitlePage(pageNum){
 				let favoriteMovies = JSON.parse(localStorage.getItem("favoriteMovies")) || [];
 				if(favoriteMovies.indexOf(id) === -1){
 					output += `
-					<div class="card">
-						<div class="overlay">
-						<div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span>
-						<span><i class="material-icons favorite" onclick="favorite('${movie[i].id}')">favorite</i></span></div>
-						<div class="movie">
-							<h2>${movie[i].title}</h2>
-								<p id="p_rating"><strong>Rating:</strong> <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
-								<p><strong>Release date:</strong> <span>${movie[i].release_date} <i class="material-icons date">date_range</i> </span></p>
-								<a onclick="movieSelected('${movie[i].id}')" href="#">Details</a>
-						</div>
-						</div>
+                    <div class="card">
+                    <div class="overlay">
+                    <div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span></div>
+                    
+               
+						<div class="movie" style="bottom:10%"> 
+                        <p><b> ${movie[i].title}</b></p>
+                            <p id="p_rating">Rating: <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
+                          
+                            <p> Release date: <span>${movie[i].release_date}</span></p>
+                        
+                            <a style="background-color: rgba(199, 1, 1,0.7); color: #f9ca24; border-radius: 10px 0 10px 0; display=inline" onclick="movieSelected('${movie[i].id}')" href="#"><i class="fa fa-info"> </i>&nbsp Info</a>
+                            
+                    </div>
+                    </div>
 						<div class="card_img">
 							<img src="http://image.tmdb.org/t/p/w400/${movie[i].poster_path}" onerror="this.onerror=null;this.src='../images/imageNotFound.png';">
 						</div>
@@ -790,13 +866,17 @@ function movieByTitlePage(pageNum){
 					output += `
                     <div class="card">
                     <div class="overlay">
-                    <div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span>
-                    <span><i class="material-icons favoriteMarked" onclick="favorite('${movie[i].id}')">favorite</i></span></div>
+                    <div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span></div>
+                    
                     <div class="movie">
                         <h2>${movie[i].title}</h2>
                             <p id="p_rating"><strong>Rating:</strong> <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
-                            <p><strong>Release date:</strong> <span>${movie[i].release_date} <i class="material-icons date">date_range</i> </span></p>
-                            <a onclick="movieSelected('${movie[i].id}')" href="#">Details</a>
+                          
+                            <p><strong> Release date:</strong> <span>${movie[i].release_date}</span></p>
+                        
+                            <a style="background-color: rgba(199, 1, 1,0.7); color: #f9ca24; border-radius: 10px 0 10px 0; display=inline" onclick="movieSelected('${movie[i].id}')" href="#"><i class="fa fa-info"> </i>&nbsp Info</a>
+                            
+                            
                     </div>
                     </div>
                     <div class="card_img">

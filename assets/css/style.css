@@ -1,8 +1,20 @@
 body{
     background-color: #151f25;
-    font-family: Ubuntu;
+    font-family: "Ubuntu";
     color: whitesmoke;
 
+}
+
+#yellow{
+	color:#f9ca24 ;
+}
+
+#red{
+	color: rgb(199, 1, 1); 
+}
+
+#white{
+	color: whitesmoke;
 }
 
 
@@ -126,7 +138,7 @@ body{
 #movies, #tvShows{
 	display: grid;
 	grid-template-columns: repeat(4,1fr);
-	grid-gap: 15px;
+	grid-gap: 25px;
 	margin: 15px 0;
 }
 .moviesRows p{
@@ -182,6 +194,7 @@ body{
 	bottom:0;
 	left: 0;
 }
+
 .card .overlay .movie a{
 	display: flex;
 	position: relative;
@@ -190,12 +203,12 @@ body{
 	justify-content: center;
 	align-items: center;
     padding: 3px;
-    width: 70px;
+    width: auto;
     height: 30px;
     border: none;
     background-color: #fff;
     color: #333;
-    font-family: "Montserrat SemiBold";
+    font-family: "Ubuntu";
     margin: 10px 15px;
     cursor: pointer;
 	transition: 0.2s ease;
@@ -206,8 +219,9 @@ body{
     color: #fff;
 }
 .movie p {
-    font-size: 16px;
+    font-size: 15px;
 	display: flex;
+	color: #f9ca24;
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: flex-start;
@@ -231,7 +245,7 @@ body{
 	color: #f2f2f2;
 }
 .card .overlay .movie h2{
-    font-family: "Montserrat Black";
+    font-family: "Ubuntu";
     width: 290px;
     font-size: 35px;
     color: #fff;
@@ -340,6 +354,13 @@ body{
 /* MOVIE / TV SHOW OUTPUT CARDS END*/
 
 /* Buttons for pages */
+
+.twobuttons{
+	background-color: rgb(199, 1, 1);
+	color: #f9ca24;
+	border-radius: 2px 0 2px 0;
+}
+
 .pages{
 	width: 100%;
 	display: none;
@@ -351,13 +372,13 @@ body{
 	margin: 20px 25px;
 	font-size: 18px;
 	font-weight: bold;
-	font-family: "Montserrat Black", Arial, Helvetica, sans-serif;
+	font-family: "Ubuntu";
 	border:none;
 	border-radius: 3px;
-	background-color: #fff;
-	box-shadow: 0 3px rgba(0,0,0,0.1);
+	background-color:#f9ca24 ;
+	box-shadow: 0 3px rgb(199,1,1);
 	color: #2f3640;
-	width: auto;
+	width: 70px;	
 	padding: 0 5px;
 	height: 35px;
 	display: flex;
@@ -365,11 +386,9 @@ body{
 	align-items: center;
 	cursor: pointer;
 	transition: 0.3s ease;
+	border-radius: 10px 10px 10px 10px;
 }
-#prev:hover, #next:hover{
-	color: #333;
-	box-shadow: 0px 2px 15px rgba(0,0,0,0.3);
-}
+
 /* Movies/Tvshows output - END. */
 
 #searchedFor span{
@@ -404,13 +423,14 @@ body{
 	}
 }
 .container_search #form input{
-	padding: 5px;
-	border-radius: 3px;
-	border: none;
-	background-color: #fff;
-	box-shadow: 0 5px 5px rgba(0,0,0,0.10);
+	padding-left: 5px;
+	border-radius: 15px 0px 15px 0px;
+	background-color: whitesmoke;
+	box-shadow: 0 5px 5px rgb(199,1,1);
 	color: #2f3640;
 	width: 300px;
+	height: 40px;
+	font-size: 20px;
 	position: relative;
 }
 .container_search #searchImg i{
@@ -422,7 +442,7 @@ body{
 	transform:rotate(90deg);
 }
 #form input::placeholder{
-	font-size: 14px;
+	font-size: 15px;
 	color: rgba(0,0,0,0.6);
 }
 #form input:focus{
@@ -435,28 +455,7 @@ body{
 #genreName{
 	color: #e1302a;
 }
-#questionMark{
-	padding: 5px 10px;
-	background-color: #fff;
-	font-weight: bold;
-	font-family: "Times New Roman", Arial, Helvetica, sans-serif;
-	font-style: italic;
-	font-size: 30px;
-	color: #333;
-	cursor: pointer;
-	margin-left: 5px;
-	border: none;
-	border-radius: 3px;
-	box-shadow: 0 5px 5px rgba(0,0,0,0.1);
-	transition: 0.3s;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-#questionMark:hover{
-	background-color: #2f3640;
-	color: #fff;
-}
+
 .modal{
 	display: block;
 	font-weight: 500;
@@ -508,7 +507,7 @@ body{
 	left: 15px;
 	text-align: left;
 	color: #333;
-	font-family: "Montserrat Regular";
+	font-family: "Ubuntu";
 }
 .modal_container #modalGotIt{
 	display: block;
@@ -520,7 +519,7 @@ body{
 	bottom: 0;
 	right: 5px;
 	cursor: pointer;
-	font-family: "Montserrat SemiBold";
+	font-family: "Ubuntu";
 	background-color: #333;
 	color: #fff;
 	outline: none;
@@ -543,7 +542,7 @@ body{
 	width: 250px;
 	margin: 15px auto;
 	padding: 3px 7px;
-	font-family: "Montserrat SemiBold", Arial, Helvetica, sans-serif;
+	font-family: "Ubuntu";
 	font-weight: bold;
 	border: none;
 	border-radius: 3px;
@@ -551,15 +550,16 @@ body{
 	opacity: 0;
 	display: block;
 	position: relative;
-	box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+	box-shadow: 0 2px 5px rgba(199,1,1);
 	animation: select 0.35s ease-in-out 1 forwards;
 	outline: none;
+	scrollbar-3dlight-color: red;
 }
 #dates{
 	width: 130px;
 	margin-bottom: 15px;
 	padding: 3px 7px;
-	font-family: "Montserrat Medium", Arial, Helvetica, sans-serif;
+	font-family: "Ubuntu";
 	border: none;
 	border-radius: 3px;
 	transition: 0.25s;
@@ -577,7 +577,7 @@ body{
 	border: none;
 	background-color: #e1302a;
 	color: #fff;
-	font-family: "Montserrat Medium", Arial, Helvetica, sans-serif;
+	font-family: "Ubuntu";
 	font-size: 14px;
 	transition: 0.25s;
 	cursor: pointer;
@@ -594,7 +594,7 @@ body{
 	padding: 10px;
 	border-radius: 3px;
 	width: auto;
-	font-family: "Montserrat Medium", Arial, Helvetica, sans-serif;
+	font-family: "Ubuntu", Arial, Helvetica, sans-serif;
 	color: #fff;
 	position: fixed;
 	left: 30px;
@@ -723,7 +723,8 @@ body{
 		grid-template-columns: repeat(3,1fr);
 	}
 }
-@media (max-width: 1024px){
+
+@media (max-width: 320px){
 	.card .overlay{
 		position: absolute;
 		top: 0;
@@ -976,7 +977,7 @@ body{
 		color: #fff;
 	}
 	.movie p {
-		font-family: "Montserrat Medium";
+		font-family: "Ubuntu";
 		color: #fff;
 		font-size: 16px;
 		display: flex;
@@ -1217,17 +1218,21 @@ body{
 	font-family: "Montserrat Regular";
 }
 .buttons{
+	
 	display: flex;
 	justify-content: flex-start;
 	margin-top: 25px;
-	width: 100%;
+	width: auto;
 }
 .buttons > *{
 	margin: 0 5px;
 	cursor: pointer;
 }
 .buttons a{
-	font-family: "Montserrat Medium", Arial, Helvetica, sans-serif;
+	
+	background-color: #f9ca24;
+	border-radius: 10px 0 10px 0;
+	font-family: "Ubuntu";
 	font-size: 16px;
 	padding: 8px;
 	background-color: #fff;
@@ -1276,7 +1281,7 @@ body{
 #errorText{
 	text-align: center;
 	width: auto;
-	font-family: "Montserrat Medium",Arial, Helvetica, sans-serif;
+	font-family:"Ubuntu";
 }
 .page{
 	width: 100%;
@@ -1284,29 +1289,8 @@ body{
 	justify-content: center;
 	margin-bottom: 20px;
 }
-#prev, #next {
-	margin: 10px 25px;
-	font-size: 18px;
-	font-weight: bold;
-	font-family: "Montserrat Black", Arial, Helvetica, sans-serif;
-	border:none;
-	border-radius: 3px;
-	background-color: #fff;
-	box-shadow: 0 3px rgba(0,0,0,0.1);
-	color: #2f3640;
-	width: auto;
-	padding: 0 5px;
-	height: 35px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	cursor: pointer;
-	transition: 0.3s ease;
-}
-#prev:hover, #next:hover{
-	color: #333;
-	box-shadow: 0px 2px 15px rgba(0,0,0,0.3);
-}
+
+
 /* Movie/tv show info - END. */
 
 /* Movie/tv show trailer - START. */
@@ -1450,7 +1434,7 @@ body{
     color: #fff;
 }
 .movie p {
-    font-family: "Montserrat Medium";
+    font-family: "Ubuntu";
     color: #fff;
     font-size: 14px;
 	margin-left: 5px;
@@ -1525,15 +1509,15 @@ body{
 	}
 }
 /* Media querie for tablets and phones */
-@media (max-width: 1024px){
+@media (max-width: 320x){
 	.card .overlay{
 		position: absolute;
 		top: 0;
 		left: 0;
 		width: 100%;
 		height: 425px;
-		transition: 0.30s ease-in-out;
-		background-color: rgba(0,0,0,0.6);
+		transition: 0.40s ease-in-out;
+		background-color: rgba(0,0,0,0.7);
 	}
 	#recommended{
 		overflow-x: scroll;
@@ -1717,7 +1701,7 @@ body{
     border: none;
     background-color: #2f3640;
     color: #f5f5f5;
-    font-family: "Montserrat Regular";
+    font-family: "Ubuntu";
     cursor: pointer;
     transition: 0.1s ease;
     margin: 10px 0;
@@ -1758,3 +1742,46 @@ body{
 
 
 
+
+
+
+
+@import "//netdna.bootstrapcdn.com/font-awesome/3.0/css/font-awesome.css";
+
+#inputField{
+  height: 25px;
+  padding-left: 10px;
+  font-size: 30px;
+  margin: 5px 0;
+
+}
+
+#inputField::-webkit-input-placeholder { 
+font-family: FontAwesome;
+font-weight: normal;
+overflow: visible;
+vertical-align: top;
+display: inline-block !important;
+padding-left: 10px;
+color: hsl(9, 40%, 60%);
+}
+
+#inputField::-moz-placeholder  { 
+font-family: FontAwesome;
+font-weight: normal;
+overflow: visible;
+vertical-align: top;
+display: inline-block !important;
+padding-left: 10px;
+color: hsl(9, 40%, 60%);
+}
+
+#inputField:-ms-input-placeholder  { 
+font-family: FontAwesome;
+font-weight: normal;
+overflow: visible;
+vertical-align: top;
+/* display: inline-block !important; */
+padding-left: 5px;
+color: hsl(9, 40%, 60%);
+}

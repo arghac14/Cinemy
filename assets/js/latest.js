@@ -29,15 +29,18 @@ window.onload = function getMovies(){
 				if(favoriteMovies.indexOf(id) === -1){
 					output += `
 					<div class="card">
-						<div class="overlay">
-						<div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span>
-						<span><i class="material-icons favorite" onclick="favorite('${movie[i].id}')">favorite</i></span></div>
-						<div class="movie">
-							<h2>${movie[i].title}</h2>
-								<p id="p_rating"><strong>Rating:</strong> <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
-								<p><strong>Release date:</strong> <span>${movie[i].release_date} <i class="material-icons date">date_range</i> </span></p>
-								<a onclick="movieSelected('${movie[i].id}')" href="#">Details</a>
-						</div>
+                        <div class="overlay">
+                        <div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span></div>
+					
+						<div class="movie" style="bottom:10%"> 
+							<p><b> ${movie[i].title}</b></p>
+								<p id="p_rating">Rating: <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
+                              
+                                <p> Release date: <span>${movie[i].release_date}</span></p>
+                            
+                                <a style="background-color: rgba(199, 1, 1,0.7); color: #f9ca24; border-radius: 10px 0 10px 0; display=inline" onclick="movieSelected('${movie[i].id}')" href="#"><i class="fa fa-info"> </i>&nbsp Info</a>
+                                
+                        </div>
 						</div>
 						<div class="card_img">
 							<img src="http://image.tmdb.org/t/p/w400/${movie[i].poster_path}" onerror="this.onerror=null;this.src='../images/imageNotFound.png';">
@@ -48,15 +51,19 @@ window.onload = function getMovies(){
 					output += `
 					<div class="card">
 					<div class="overlay">
-					<div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span>
-					<span><i class="material-icons favoriteMarked" onclick="favorite('${movie[i].id}')">favorite</i></span></div>
-					<div class="movie">
-						<h2>${movie[i].title}</h2>
-							<p id="p_rating"><strong>Rating:</strong> <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
-							<p><strong>Release date:</strong> <span>${movie[i].release_date} <i class="material-icons date">date_range</i> </span></p>
-							<a onclick="movieSelected('${movie[i].id}')" href="#">Details</a>
-					</div>
-					</div>
+					<div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span></div>
+					
+					
+					<div class="movie" style="bottom:10%"> 
+					<p><b> ${movie[i].title}</b></p>
+						<p id="p_rating">Rating: <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
+					  
+						<p> Release date: <span>${movie[i].release_date}</span></p>
+					
+						<a style="background-color: rgba(199, 1, 1,0.7); color: #f9ca24; border-radius: 10px 0 10px 0; display=inline" onclick="movieSelected('${movie[i].id}')" href="#"><i class="fa fa-info"> </i>&nbsp Info</a>
+						
+				</div>
+				</div>
 					<div class="card_img">
 						<img src="http://image.tmdb.org/t/p/w400/${movie[i].poster_path}" onerror="this.onerror=null;this.src='../images/imageNotFound.png';">
 					</div>
@@ -123,15 +130,19 @@ function search(pageNum){
 				if(favoriteMovies.indexOf(id) === -1){
 					output += `
 					<div class="card">
-						<div class="overlay">
-						<div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span>
-						<span><i class="material-icons favorite" onclick="favorite('${movie[i].id}')">favorite</i></span></div>
-						<div class="movie">
-							<h2>${movie[i].title}</h2>
-								<p id="p_rating"><strong>Rating:</strong> <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
-								<p><strong>Release date:</strong> <span>${movie[i].release_date} <i class="material-icons date">date_range</i> </span></p>
-								<a onclick="movieSelected('${movie[i].id}')" href="#">Details</a>
-						</div>
+                        <div class="overlay">
+                        <div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span></div>
+						
+						
+						<div class="movie" style="bottom:10%"> 
+							<p><b> ${movie[i].title}</b></p>
+								<p id="p_rating">Rating: <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
+                              
+                                <p> Release date: <span>${movie[i].release_date}</span></p>
+                            
+                                <a style="background-color: rgba(199, 1, 1,0.7); color: #f9ca24; border-radius: 10px 0 10px 0; display=inline" onclick="movieSelected('${movie[i].id}')" href="#"><i class="fa fa-info"> </i>&nbsp Info</a>
+                                
+                        </div>
 						</div>
 						<div class="card_img">
 							<img src="http://image.tmdb.org/t/p/w400/${movie[i].poster_path}" onerror="this.onerror=null;this.src='../images/imageNotFound.png';">
@@ -142,15 +153,19 @@ function search(pageNum){
 					output += `
 					<div class="card">
 					<div class="overlay">
-					<div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span>
-					<span><i class="material-icons favorite" onclick="favorite('${movie[i].id}')">favorite</i></span></div>
-					<div class="movie">
-						<h2>${movie[i].title}</h2>
-							<p id="p_rating"><strong>Rating:</strong> <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
-							<p><strong>Release date:</strong> <span>${movie[i].release_date} <i class="material-icons date">date_range</i> </span></p>
-							<a onclick="movieSelected('${movie[i].id}')" href="#">Details</a>
-					</div>
-					</div>
+					<div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span></div>
+					
+					
+					<div class="movie" style="bottom:10%"> 
+					<p><b> ${movie[i].title}</b></p>
+						<p id="p_rating">Rating: <span>${movie[i].vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
+					  
+						<p> Release date: <span>${movie[i].release_date}</span></p>
+					
+						<a style="background-color: rgba(199, 1, 1,0.7); color: #f9ca24; border-radius: 10px 0 10px 0; display=inline" onclick="movieSelected('${movie[i].id}')" href="#"><i class="fa fa-info"> </i>&nbsp Info</a>
+						
+				</div>
+				</div>
 					<div class="card_img">
 						<img src="http://image.tmdb.org/t/p/w400/${movie[i].poster_path}" onerror="this.onerror=null;this.src='../images/imageNotFound.png';">
 					</div>
