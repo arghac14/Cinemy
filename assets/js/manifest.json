@@ -1,0 +1,17 @@
+{
+    "name": "Cinemy",
+    "short_name": "Cinemy",
+    "theme_color": "#f9ca24",
+    "background_color": "##151f25",
+    "display": "standalone",
+    "scope": "/",
+    "start_url": "https://cinemy.herokuapp.com",
+    "description": "Movie info website",
+    "orientation": "any",
+    "icons": [
+        {
+            "src": "/css/logo4.png",
+            "sizes": "1024x1024"
+        }
+    ]
+}
