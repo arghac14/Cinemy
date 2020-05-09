@@ -11,12 +11,9 @@ app.use(express.static(__dirname+"/assets"));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
-app.get('/', function(req, res){
 
-    res.send('welcome to express');
-});
 
-app.get('/latest', latest);
+app.get('/', latest);
 app.get('/topRated', topRated);
 app.get('/search', search);
 app.get('/watchList', watchList);
