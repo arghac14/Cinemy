@@ -1479,6 +1479,46 @@ body{
 }
 
 
+#trailer{
+	width: 100%;
+	min-height: 50px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+#trailer iframe{
+	width: 720px;
+	height: 365px;
+}
+#trailer_title{
+	margin: 10px 0 0 20px;
+	font-size: 40px;
+	text-transform: uppercase;
+	font-family: "Paytone One";
+}
+#trailer p {
+	text-align: center;
+	color: #444;
+	font-family: "Montserrat Regular";
+}
+
+@media (max-width: 740px){
+	#trailer iframe{
+		width: 550px;
+	}
+}
+@media (max-width: 685px){
+	.poster{
+		margin-top: 515px;
+	}
+}
+@media (max-width: 645px){
+	#trailer iframe{
+		width: 450px;
+	}
+}
+
 
 
 
