@@ -15,10 +15,16 @@ HTML, CSS, JavaScript, Materialize CSS, Node.js, MySQL
 
 Currently this has these following features-
 
-    1. Showing informations about most of the movies in the world.
-    2. Searching of movies based on movie title, actors' names, directors' names.
-    3. Searching and categorizing movies by their genres. 
-    4. Displaying latest movies that are recently released.
-    5. Displaying all time top rated movies that are recently released.
-    6. Showing recommendations of similar movies. (Most useful! :p)
-    7. Showing the trailer of the particular movie on the same window. (Personal favourite! :p).
+* Showing informations about most of the movies in the world.
+* Searching of movies based on movie title, actors' names, directors' names.
+* Searching and categorizing movies by their genres. 
+* Displaying latest movies that are recently released.
+* Displaying all time top rated movies that are recently released.
+* Showing recommendations of similar movies. (Most useful! :p)
+* Showing the trailer of the particular movie on the same window. (Personal favourite! :p).
+    
+##### Snapshots:
+
+![](https://github.com/arghac14/Cinemy/blob/master/Snapshots/1.JPG)
+![](https://github.com/arghac14/Cinemy/blob/master/Snapshots/2.JPG)
+![](https://github.com/arghac14/Cinemy/blob/master/Snapshots/3.JPG)
