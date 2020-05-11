@@ -45,7 +45,9 @@ module.exports={
                 //console.log(result)
     });
     }
+   // handleDisconnect(db);
     },
+    
 
     signUp: function(req, res){
         res.render('signup.ejs')
