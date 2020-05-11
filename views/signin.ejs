@@ -1,0 +1,31 @@
+<% include ./partials/header %>
+<div class="login">
+  <div class="title">
+      <span>CINEMY</span>
+  </div>
+  <div class="body">
+      <div class="logo">
+          <img src="/images/logo4.png">
+      </div>
+      <div class="content">
+        <form action="" method="POST">
+          <input required style="color: black; font-size: 30px;" type="text" 
+                  name="username2" 
+                  id="username" 
+                  placeholder="Username"
+                  autocomplete="off">
+
+          <input required style="color: black; font-size: 30px;" type="password" 
+                  name="password2" 
+                  id="password" 
+                  placeholder="Password">
+                  
+          <button>Sign In</button>
+          <p style="color:black"></p>
+        </form>
+          <a href="signup" style="color: blue">New user? Sign Up here</a>
+          <div><p style="color: red; font-size: 20px;"><%=err%> </p></div>
+      </div>
+  </div>
+  </div>
+</div>

@@ -828,6 +828,8 @@ function movieByGenrePage(pageNum){
         }
          })
 }
+
+
 function movieByTitlePage(pageNum){
 
     let searchText = document.getElementById("inputField").value;
@@ -902,4 +904,19 @@ function movieByTitlePage(pageNum){
                 prev.style.display = "none";
             }
 		})
+}
+function addToList(id){
+    console.log(id);
+    $.ajax({
+      url: "/search",
+      data:{
+        q: id,
+      },
+      type: "POST", // if you want to send data via the "data" property change this to "POST". This can be omitted otherwise
+      success: function(responseData) {
+          console.log(responseData)
+      },
+      error: console.error
+    });
+
 }

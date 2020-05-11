@@ -1,3 +1,121 @@
 <% include ./partials/header %>
 
+<h4 style="text-align: center;" id="white" data-aos="flip-left"><%=title%>'s Watchlist <% if(info.length<1){%>is Empty!<%}%></h4>
+<div class="spinner"></div>	
+	<div class="showcase">
+		<div id="movies" class="moviesRows">
+      
+    </div>
+  </div>
+
+  
+    <div class="pages">
+        
+    </div>
+
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="/js/watch-list.js"></script>
+<script>
+
+
+
+
+
+
+len=<%=info.length%>
+//console.log(len)
+
+
+
+const API_KEY = "07be10560c3c4cf68794acc1da83356b"
+
+const spinner = document.querySelector(".spinner");
+spinner.style.display = "none";
+
+const container = document.querySelector(".showcase");
+container.style.display = "none"
+
+const pages = document.querySelector(".pages");
+pages.style.display = "none";
+
+let movieOutput = document.getElementById("movies");
+
+
+window.onload = function getMovies(){
+	spinner.style.display = "block";
+	setTimeout(() => {
+		spinner.style.display = "none";
+		container.style.display = "flex";
+		pages.style.display = "flex";
+	}, 1000);
+
+
+<% 
+if(info.length>0){
+
+info.forEach((m, index) => { 
+  console.log(m.movie_id)
+%>
+
+	var id = <%= m.movie_id %>
+	axios.get("https://api.themoviedb.org/3/movie/"+id+"?api_key="+API_KEY+'&language=en-US&page=1&region=US')
+		.then( (response) =>{
+			//console.log(response.data)
+			let movie = response.data;
+			
+			//console.log(movie)
+				//id = JSON.stringify(id);
+				let favoriteMovies = JSON.parse(localStorage.getItem("favoriteMovies")) || [];
+				if(favoriteMovies.indexOf(id) === -1){
+					movieOutput.innerHTML += `
+					<div class="card">
+           <div class="overlay">
+						<div class="addBtn"></div>
+						
+						<div class="movie" style="bottom:10%"> 
+							<p><b> ${movie.title}</b></p>
+								<p id="p_rating">Rating: <span>${movie.vote_average} / 10  <i class="material-icons star">star_rate</i></span> </p>
+                              
+                                <p> Release date: <span>${movie.release_date}</span></p>
+                            
+                                
+                        </div>
+						</div>
+						<div class="card_img">
+							<img src="http://image.tmdb.org/t/p/w400/${movie.poster_path}" onerror="this.onerror=null;this.src='../images/imageNotFound.png';">
+						</div>
+					</div>
+					`;
+				} 
+			
+	
+		
+		})
+  
+		// If theres an error, logs the error in console.
+		.catch( (err) =>{
+			console.log(err);
+		})
+<%
+});
+
+}
+else{%>
+  <div style="color:whitesmoke"><h3>Watchlist is Empty!</h3></div>
+<% } %>
+    
+}
+
+// Takes you to detailed info page.
+function movieSelected(id){
+	sessionStorage.setItem("movieId", id);
+	window.location.replace("/details");
+	return false;
+}
+
+
+
+</script>
+</body>
+</html>

@@ -30,7 +30,12 @@ window.onload = function getMovies(){
 					output += `
 					<div class="card">
                         <div class="overlay">
-                        <div class="addBtn"><span><i class="material-icons watch" onclick="addToList('${movie[i].id}')">visibility</i></span></div>
+						<div class="addBtn">
+						
+						<span><i class="material-icons watch" id="ajx" onclick="addToList('${movie[i].id}')">visibility</i></input></span>
+						
+						</div>
+						
 					
 						<div class="movie" style="bottom:10%"> 
 							<p><b> ${movie[i].title}</b></p>
@@ -192,3 +197,41 @@ function search(pageNum){
 			console.log(err);
 		})
 }
+
+function addToList(id){
+		console.log(id);
+		$.ajax({
+		  url: "/",
+		  data:{
+			q: id,
+		  },
+		  type: "POST", // if you want to send data via the "data" property change this to "POST". This can be omitted otherwise
+		  success: function(responseData) {
+			  console.log(responseData)
+		  },
+		  error: console.error
+		});
+	
+ }
+
+// function addToList(id) {
+// 	$.ajax(
+//       {
+//         url: "/topRated",
+//         type: "POST"
+//       });
+      
+// }
+
+// $("form").submit(function(e) {
+//     e.preventDefault();
+//     $.ajax({
+//       url: "/",
+//       data: "arghac14",
+// 	  type: "POST", // if you want to send data via the "data" property change this to "POST". This can be omitted otherwise
+//       success: function(responseData) {
+// 		  console.log("success");
+//       },
+//       error: console.error
+//     });
+//   });
