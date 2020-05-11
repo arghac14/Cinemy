@@ -17,35 +17,38 @@ module.exports={
 
   
     details: function(req, res){
+        
         res.render('details.ejs');
     },
 
     watchList: function(req,res){
+        
+        res.render('watch-list.ejs')
        // console.log("not local:"+UN)
         //console.log("Before:"+UN+ "l"+UN.length)
-        if (!req.session.loggedin){
-            res.redirect('/signup')
-        }
-        else{
-        if(UN.length<1){
-            UN="arghac14";
-        }
-       // console.log("After:"+UN)
+//         if (!req.session.loggedin){
+//             res.redirect('/signup')
+//         }
+//         else{
+//         if(UN.length<1){
+//             UN="arghac14";
+//         }
+//        // console.log("After:"+UN)
 
-        let query="SELECT * FROM `"+UN+"`";
-            db.query(query,function(err,result,fields){
-                if(err){
-                    res.redirect('/');
-                }
-                res.render('watch-list.ejs',{
-                    info: result,
-                    title: UN
-                });
+//         let query="SELECT * FROM `"+UN+"`";
+//             db.query(query,function(err,result,fields){
+//                 if(err){
+//                     res.redirect('/');
+//                 }
+//                 res.render('watch-list.ejs',{
+//                     info: result,
+//                     title: UN
+//                 });
                 
-                //console.log(result)
-    });
-    }
-   // handleDisconnect(db);
+//                 //console.log(result)
+//     });
+//     }
+//    // handleDisconnect(db);
     },
     
 
