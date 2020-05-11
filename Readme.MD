@@ -2,7 +2,7 @@
 
 #### Description
 
-Cinemy is a progressive web app made with Node.js and TMDB API, where users can explore a wide range of movies, get informations about them and get recommendations about similar movies.
+Cinemy is a progressive web app made with Node.js and TMDB API, where users can explore a wide range of movies, get informations about them, get recommendations about similar movies and track their watch history.
 
 #### Link
 [Live link](https://cinemy.herokuapp.com)
@@ -22,6 +22,7 @@ Currently this has these following features-
 * Displaying all time top rated movies that are recently released.
 * Showing recommendations of similar movies. (Most useful! :p)
 * Showing the trailer of the particular movie on the same window. (Personal favourite! :p).
+* Tracking of users' watch history.
     
 ##### Snapshots:
 
