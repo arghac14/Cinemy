@@ -22,7 +22,7 @@ Currently this has these following features-
 * Displaying all time top rated movies that are recently released.
 * Showing recommendations of similar movies. (Most useful! :p)
 * Showing the trailer of the particular movie on the same window. (Personal favourite! :p).
-* Tracking of users' watch history.
+* Tracking of users' watch history. **[ Currently disabled because of Heroku's maximum connection limit on ClearDB free plan -_-]**
     
 ##### Snapshots:
 
