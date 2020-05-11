@@ -180,9 +180,8 @@ function getMovie(){
 				document.querySelector(".page").style.display = "none";
 				recommended.innerHTML =
 				 `<div class="recommendations_error">
-					
+				 
 					<br>
-					<p style="color: whitesmoke">No recommendations are available at this moment. Please check later.</p>
 				 </div>`;
 			})
 }

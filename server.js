@@ -31,26 +31,35 @@ app.get('/signup', signUp);
 //database connection
 
 var db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
+  host: 'us-cdbr-east-06.cleardb.net',
+  user: 'ba611a6395635b',
+  password: '51adca2f',
+  database: 'heroku_367dd1c3885c462'
 });
 
-db.connect(function(err) {
-  if (err) throw err;
-  console.log("Connected!");
-  sql="CREATE DATABASE IF NOT EXISTS lib1";
-  db.query(sql, function (err, result) {
-    if (err) throw err;
-    console.log("Database created");
-  });
-});
-global.db=db;
-var db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  database: 'lib1'
-});
- global.db=db  
+
+
+
+
+
+
+// db.connect(function(err) {
+//   if (err) throw err;
+//   console.log("Connected!");
+//   sql="CREATE DATABASE IF NOT EXISTS heroku_367dd1c3885c462";
+//   db.query(sql, function (err, result) {
+//     if (err) throw err;
+//     console.log("Database created");
+//   });
+// });
+// global.db=db;
+// var db = mysql.createConnection({
+//   host: "@us-cdbr-east-06.cleardb.net",
+//   user: "ba611a6395635b:51adca2f",
+//   password: "51adca2f",
+//   database: "heroku_367dd1c3885c462"
+// });
+ global.db=db;
   
   db.connect(function(err) {
     if (err) throw err;
@@ -62,7 +71,40 @@ var db = mysql.createConnection({
 
     
   });
+  
+  
+  function handleDisconnect(connection){
+    connection.on('error', function(err){
+      if(!err.fatal)
+      {
+        return;
+      }
+      if(err.code !== 'PROTOCOL_CONNECTION_LOST')
+      {
+        throw err;
+      }
+      console.log('\nRe-connecting lost connection: ' +err.stack);
+  
+      connection = mysql.createConnection(connection.config);
+      handleDisconnect(connection);
+      connection.connect();
+    });
+  }
+  
+  handleDisconnect(db);
+  //connection.connect();
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   global.db=db;
+
 
   global.UN="";
 
@@ -97,7 +139,7 @@ app.get('/signup', signUp);
     res.redirect('/signin');
     });
 
-    
+    handleDisconnect(db);
  
     app.post("/signin", function(req,res) {
       let userName2=req.body.username2;
@@ -127,7 +169,7 @@ app.get('/signup', signUp);
     }
       });
 
-
+      handleDisconnect(db);
 
   app.post("/", function(req,res) {
     console.log("/:"+UN)
@@ -149,7 +191,7 @@ app.get('/signup', signUp);
   }
     });
   
-
+    handleDisconnect(db);
     app.post("/top-rated", function(req, res) {
     let movieId=req.body.q
     //console.log(movieId)
@@ -163,6 +205,8 @@ app.get('/signup', signUp);
     });
     });
 
+    handleDisconnect(db);
+
     app.post("/search", function(req, res) {
     let movieId=req.body.q
     //console.log(movieId)
@@ -175,6 +219,7 @@ app.get('/signup', signUp);
         
     });
     });
+    handleDisconnect(db);
 
 
     app.post("/details", function(req, res) {
@@ -188,7 +233,8 @@ app.get('/signup', signUp);
         }
         
     });
-    }); 
+    });
+    handleDisconnect(db); 
 
 
 

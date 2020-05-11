@@ -28,3 +28,5 @@ Currently this has these following features-
 ![](https://github.com/arghac14/Cinemy/blob/master/Snapshots/1.JPG)
 ![](https://github.com/arghac14/Cinemy/blob/master/Snapshots/2.JPG)
 ![](https://github.com/arghac14/Cinemy/blob/master/Snapshots/3.JPG)
+![](https://github.com/arghac14/Cinemy/blob/master/Snapshots/4.JPG)
+![](https://github.com/arghac14/Cinemy/blob/master/Snapshots/5.JPG)
