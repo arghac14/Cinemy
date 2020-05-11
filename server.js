@@ -127,11 +127,11 @@ app.get('/signup', signUp);
       console.log("Table created");
     });
 
-    let addQuery="INSERT INTO `persons1` (username, password) VALUES('" + userName + "','" + passWord + "')";
+    let addQuery="INSERT INTO IF NOT EXISTS `persons1` (username, password) VALUES('" + userName + "','" + passWord + "')";
     db.query(addQuery,function(err,result){
         if(err){
             console.log("could not insert!")
-            return res.status(500).send(err);
+            res.redirect('/');
         }
         console.log("sign up data inserted")
     });
@@ -148,7 +148,9 @@ app.get('/signup', signUp);
       if (userName2 && passWord2){
       var sql ="SELECT * FROM `"+"persons1"+"` WHERE username = '" + userName2 + "' AND password = '" + passWord2 + "' ";
        db.query(sql, function (err, result) {
-        if (err) throw err;
+        if (err){
+          res.redirect('/');
+        };
         if (result.length>0){
             
             req.session.username= userName2;
@@ -182,8 +184,8 @@ app.get('/signup', signUp);
     let addQuery="INSERT INTO `"+UN+"` (`movie_id`) VALUES ('" + movieId + "')";
     db.query(addQuery,function(err,result){
         if(err){
-            console.log("could not insert!")
-            return res.status(500).send(err);
+            console.log("1 could not insert!")
+            res.redirect('/');
         }
         
     });
@@ -197,8 +199,8 @@ app.get('/signup', signUp);
     let addQuery="INSERT INTO `"+UN+"` (`movie_id`) VALUES ('" + movieId + "')";
     db.query(addQuery,function(err,result){
         if(err){
-            console.log("could not insert!")
-            return res.status(500).send(err);
+            console.log("2 could not insert!")
+            res.redirect('/');
         }
         
     });
@@ -212,8 +214,8 @@ app.get('/signup', signUp);
     let addQuery="INSERT INTO `"+UN+"` (`movie_id`) VALUES ('" + movieId + "')";
     db.query(addQuery,function(err,result){
         if(err){
-            console.log("could not insert!")
-            return res.status(500).send(err);
+            console.log("3 could not insert!")
+            res.redirect('/');
         }
         
     });
@@ -227,8 +229,8 @@ app.get('/signup', signUp);
     let addQuery="INSERT INTO `"+UN+"` (`movie_id`) VALUES ('" + movieId + "')";
     db.query(addQuery,function(err,result){
         if(err){
-            console.log("could not insert!")
-            return res.status(500).send(err);
+            console.log("4 could not insert!")
+            res.redirect('/');
         }
         
     });
