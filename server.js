@@ -39,10 +39,6 @@ var db = mysql.createConnection({
 
 
 
-
-
-
-
 // db.connect(function(err) {
 //   if (err) throw err;
 //   console.log("Connected!");
@@ -52,13 +48,17 @@ var db = mysql.createConnection({
 //     console.log("Database created");
 //   });
 // });
+
+
 // global.db=db;
+
 // var db = mysql.createConnection({
 //   host: "@us-cdbr-east-06.cleardb.net",
 //   user: "ba611a6395635b:51adca2f",
 //   password: "51adca2f",
 //   database: "heroku_367dd1c3885c462"
-// });
+//  });
+ 
  global.db=db;
   
   db.connect(function(err) {
@@ -71,7 +71,7 @@ var db = mysql.createConnection({
 
     
   });
-  
+  handleDisconnect(db);
   
   function handleDisconnect(connection){
     connection.on('error', function(err){
